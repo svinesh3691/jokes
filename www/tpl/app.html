@@ -1,0 +1,165 @@
+		<style type="text/css">
+
+			[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+              display: none !important;
+            }
+            
+
+
+		</style>
+
+		<header>
+				<div class="row">
+					<div class="col-md-1 col-xs-2">
+						<i class="fa fa-bars mo"></i>
+					</div>
+					<div class="col-md-4 col-xs-10">
+						<span class="logo">
+						 <img class="logoi" src="icon.png">
+						 &nbsp; Jokes.appsvin.com
+						</span>
+					</div>
+					
+					<div class="col-md-7 col-xs-12">
+							<div class="menu">
+								<div class="men">
+									<a href="#/app/home">
+										<i class="fa fa-home"></i> Home
+									</a>
+								</div>
+								
+
+								<span ng-if="!fid">
+									<div class="men">
+										<a href="#/app/register">
+											<i class="fa fa-user"></i> Register 
+										</a>
+									</div>
+								
+
+								</span>
+
+								<span ng-if="!fid">
+									<div class="men">
+										<a href="#/app/login">
+											<i class="fa fa-key"></i>  Login
+										</a>
+									</div>
+								
+
+								</span>
+
+
+
+								<span ng-if="fid">
+									<div class="men">
+										<a href="#/app/profile">
+											<i class="fa fa-user"></i> &nbsp;{{fname}}
+										</a>
+									</div>
+									<div class="men">
+										<a class="lgtl" ng-click="logout()" onclick="lgtl()" href="">
+											<i class="fa fa-sign-out"></i> Logout
+										</a>
+									</div>
+								</span>
+						</div>
+					</div>
+				</div>
+		</header>
+
+
+		<content>
+			<div class="container content">
+				<div class="row">
+					
+
+
+					<div class="col-md-4 profile-parent">
+						<div class="profile">
+
+
+							<!-- <div  class="jokes_hd" style="text-align:center">
+								<span style="font-size:1.8em;font-weight:700;"> Jokes.appsvin.com </span>
+							</div> -->
+
+
+
+							<div class="jokes">
+									<div class="row">
+										<div class="col-md-12">
+
+											
+
+												<p class="lp">
+													
+													Welcome to Jokes.appsvin.com. <br><br>
+													We have 1000s of Jokes in multiple categories.<br><br>
+													Users can Post, Share, Read Jokes & Enjoy!!!
+
+												</p>
+												<p  class="lp"> Laughter makes a man live better </p>
+												<p  class="lp"> All is Well... Lets Enjoy! </p>
+
+											
+											
+										</div>
+									</div>
+									
+							</div>
+
+							<div class="jokes" style="margin-bottom:12px">
+										<img src="link2.jpg" style="max-width:100%">
+
+									</div>
+
+
+
+
+
+
+
+
+						
+
+
+
+							
+
+						</div>
+					</div>
+
+
+       				<route-loading-indicator></route-loading-indicator>
+                                  
+					<div class="app-content-body fade-in-up" ui-view></div>
+
+
+
+
+
+				
+
+				</div>
+			</div>
+
+
+			<div class="container">
+				<div class="break">
+				</div>
+			</div>
+		</content>
+
+
+			
+
+<script type="text/javascript">
+
+	function lgtl()
+	{
+		$('.lgtl').html('<i class="fa fa-spin fa-cog"></i> Logging out');
+	}
+
+
+</script>
+<script src="ats/js/script.js"></script>

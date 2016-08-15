@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+	
+	<head>
+		<title> Jokes - appsvin.com </title>
+		<link rel="shortcut icon" href="favicon.ico" />
+		<meta name="description" content="Post, read & share jokes. Whatsapp Jokes ,SMS Jokes, Santa Jokes, Teacher Jokes, short jokes, comedy pics and much more here" />
+        <meta name="keywords" content="Jokes | Whatsapp Jokes  | Comedy | sms jokes | share jokes | Online Jokes Reading, Posting, Sharing" />
+        <meta name="google-site-verification" content="MCMvPj7e9xbBbdFIjOWr81NyrKzRZvyG-2ossQB-tFM" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		  	<meta property="og:site_name" content="Jokes - appsvin.com"/>
+		    <meta property="og:title" content="Jokes - appsvin.com "/>
+		    <meta  property="og:description" content="Jokes - appsvin.com is a funny website where you can post, read, share and enjoy jokes. You can also avail free recharges by posting jokes in this website.Get more jokes to share with your friends"/>
+		    <meta property="og:url" content="http://jokes.appsvin.com/"/>
+		    <meta  property="og:image" content="http://jokes.appsvin.com/link2.jpg"/>
+		    <meta property="og:type" href="website" />
+		    <meta property="fb:app_id" content="1621878204759357" />
+
+
+		<link rel="stylesheet" href="ats/css/style.css">
+		<link rel="stylesheet" href="co/sup/boot/css/bootstrap.min.css">
+		<link rel="stylesheet" href="co/sup/font/css/font-awesome.min.css">
+		<link href="ats/emoji/css/basic/emojify.css" rel="stylesheet" type="text/css">
+		<script src="co/sup/jquery/jquery.min.js"></script>
+  		<script type="text/javascript" src="cordova.js"></script>
+
+
+	</head>
+	<body>
+			<sidemenu class="sidemenu">
+				<div id="st-container" class="st-container">
+					
+					<nav class="side-menu st-effect-1" id="menu-1">
+						<div class="sm-header">
+							<i class="fa fa-arrow-left om" style="font-size:1.76em !important"></i> 
+							<span class="smh">
+								&nbsp;&nbsp;appsvin.com
+
+							</span>
+						</div>
+						
+
+
+						<ul class="uls">
+							<li><a  href="#/app/home"> <i class="fa fa-home" style="color:#00F201"></i>  Home</a></li>
+							<li><a class="icon icon-wallet" href="#/app/about">  <i class="fa fa-building-o"  style="color:#EA00F2"></i>  About us </a></li>
+							<li ng-if="!fid"><a  href="#/app/register"> <i class="fa fa-user"  style="color:#ECCB09" ></i>  Register </a></li>
+							
+							<li ng-if="fid"><a href="#/app/profile"> <i class="fa fa-user"  style="color:#00BDF2"></i> Profile </a></li>
+							
+							<li ng-if="fid"><a class="icon icon-wallet" href="#/app/fan_jokes">  <i class="fa  fa-heart"  style="color:rgba(219, 52, 22, 0.75)"></i>  Fan Jokes</a></li>
+							<li ng-if="!fid"><a class="icon icon-wallet" href="" onclick="alert('You must login to view fan jokes')">  <i class="fa  fa-heart"  style="color:rgba(219, 52, 22, 0.75)"></i>  Fan Jokes</a></li>
+							<li><a class="icon icon-wallet" href="#/app/laughers">  <i class="fa fa-smile-o"  style="color:#E5EC13"></i>  Sort by Laughers</a></li>
+							<li ng-if="!fid"><a  href="#/app/login"> <i class="fa fa-key"  style="color:#0185FE" ></i>  Login </a></li>
+
+							<li ng-if="fid"><a ng-click="logout()"  > <i class="fa fa-sign-out"  style="color:#1971C7"></i> Logout </a></li>
+							<li><a onclick="e()"  > <i class="fa fa-power-off"  style="color:#e31f1f"></i> Exit </a></li>
+
+							
+						</ul>
+						
+
+
+
+					</nav>
+				</div>
+			</sidemenu>
+			<div class="ov"></div>
+
+			<div class="ldg">
+				<h1  style="text-align:center;color:#009AB4;margin-top:130px;font-size:2.6em"></h1>
+
+				<p style="text-align:center"> 
+					<br>
+					<br>
+					<span style="color:#FBBB35;font-weight:bold;">loading...</span>
+					
+					<br>
+					<img src="images/loading/ld.gif" style="margin-top:13px;">
+				</p>
+			</div>
+			
+
+			<div  class="app" id="app" ui-view></div>
+			<a href="#" class="scrollToTop">  </a>
+
+			<!-- top -->
+			<!-- Angular Start-->
+			<script src="ang/angular.js"></script>
+		  
+		  	<!-- Vendor -->
+		    <script src="ang/angular-ui-router/angular-ui-router.js"></script> 
+		    <script src="ang/angular-infinite/ng-infinite-scroll.min.js"></script> 
+		  	<script src="ang/ngstorage/ngStorage.js"></script> 
+
+		  	<!-- App -->
+		  	<script src="ajs/app.js"></script>
+		  	<script src="ajs/config.js"></script>
+		  	<script src="ajs/config.router.js"></script>
+		  	<script src="ajs/services/ui-load.js"></script>
+
+			<!-- ! End Angular -->
+		 	<!-- // <script src="co/sup/jquery/jquery-ui.min.js"></script> -->
+
+			<script src="co/sup/boot/js/bootstrap.min.js"></script>
+
+
+		<!-- For analytics -->
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-66809600-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+
+		<script type="text/javascript">
+			function e()
+		      {
+
+		        var d = confirm('Are you sure ?');
+		        if(d)
+		        {
+		          navigator.app.exitApp();
+		        }
+		        else
+		        {
+		          // $('.mmee').toggleClass('so');
+		        }
+		      }
+		</script>
+
+	</body>
+</html>

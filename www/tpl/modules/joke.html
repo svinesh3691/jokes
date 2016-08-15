@@ -1,0 +1,239 @@
+<style type="text/css">
+.ldg
+{
+	display: none;
+}
+
+</style>
+					<div class="col-md-8 jokes-parent">
+
+						<div class="widther">
+
+							<div class="jokes_hd">
+								<span style="font-size:2em">   Joke of {{joker[0].user_name}} </span><br>
+								<span style="font-size:1.5em">
+								</span>	
+							</div>
+
+
+							<div class="jokes_hd">
+								<span style="font-size:1.28em; font-weight:700"> Share this joke </span>
+
+
+
+								<div class="jokes" style="color:#333">
+										
+
+
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="post">
+
+														<!-- <div class="addthis_native_toolbox"></div> -->
+														<div class="addthis_sharing_toolbox"></div>
+												</div>
+											</div>
+										</div>
+
+									
+
+									</div>
+							</div>
+
+
+
+
+
+						
+
+						
+
+								
+							<div>
+
+									<div  class="jokes ng-cloak">
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="imag">
+													<img class="userimg" src="images/users/2.jpg">
+
+												</div>
+												<div class="nametime">
+
+													<div class="name">
+														<a ng-if="joker[0].nw == 0" href="#/app/profile_view/{{joker[0].uuu}}">{{joker[0].user_name}}</a>
+														<a ng-if="joker[0].nw == 1" href="#/app/profile">{{joker[0].user_name}}</a>
+													</div>
+													<div class="time"> <i class="fa fa-clock-o"></i> {{joker[0].post_stamp}}</div>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="post">
+													<!-- {{joke}} -->
+														<div class="posttxt">{{joker[0].post_text}}</div>
+														<div ng-if="joker[0].post_image" class="postimg">
+															<img class="postimage" src="images/post/{{joker[0].post_image}}">
+														</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="ln"></div>
+													<div class="col-sm-4 col-xs-6">
+
+														<div ng-if="!fid" onclick="alert('You must Login to Laugh on a Joke')"class="laugh"> 
+															<button> <i class="fa fa-smile-o"></i> I laughed </button>
+														</div>
+
+														<div ng-if="fid" ng-show="!joker[0].laughed" onclick="laughClick(this)" ng-click="laughed(joker[0].post_id)" class="laugh"> 
+															<button> <i class="fa fa-smile-o"></i> I laughed </button>
+														 </div>
+														 <div ng-if="fid" ng-show="joker[0].laughed"  onclick="laughNonck(this)" ng-click="laughno(joker[0].post_id)" class="laughed"> 
+															<button> <i class="fa fa-smile-o"></i> I laughed </button>
+														 </div>
+													</div>
+													<div class="col-sm-4 col-xs-6">
+														<div ng-if="!fid" onclick="alert('You must Login to cry on a Joker')"class="cry"> 
+															<button> <i class="fa fa-frown-o"></i> I Cried </button>
+														 </div>
+
+														<div ng-if="fid" ng-show="!joker[0].cried" onclick="cryClick(this)" ng-click="cried(joker[0].post_id)" class="cry"> 
+															<button> <i class="fa fa-frown-o"></i> I Cried </button>
+														 </div>
+														 <div ng-if="fid" ng-show="joker[0].cried"  onclick="cryNonck(this)" ng-click="cryno(joker[0].post_id)" class="cried"> 
+															<button> <i class="fa fa-frown-o"></i>  I Cried</button>
+														 </div>
+													</div>
+
+													
+
+
+													<div class="col-sm-4 col-xs-12 cntr tp sh">
+														<div class="laughers"> <i class="fa fa-thumbs-o-up"></i> <span class="cnt">{{joker[0].laughers}}</span> Laughed </div>
+
+														<div class="criers"> <i class="fa fa-thumbs-o-down"></i> <span class="cntc">{{joker[0].criers}}</span> Cried </div>
+													</div>
+
+
+												
+													
+											</div>
+										</div>
+
+									</div>
+
+							</div>
+
+
+							<div>  
+						        <div class="blog-item">
+						            <div class="row">
+						              <div class="col-lg-10 col-sm-10">
+						              	<br>
+						              	<br>
+						                   <span style="font-size:25px" ng-bind="show_over"></span>
+
+						              	<br>
+
+						              </div>
+						            </div>
+						        </div>
+						    </div>
+
+
+						</div>
+
+
+					</div>
+					
+
+
+
+<script src="ats/emoji/emojify.js"></script>
+
+<script type="text/javascript">
+
+emojify.run();
+function laughClick(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).next().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().next().find('.cnt').text();
+	cv = parseInt(cv) + 1;
+	$(t).parent().next().next().find('.cnt').html(cv);
+
+
+	lg = $(t).parent().next().find('.cried').hasClass('ng-hide');
+	if(!lg)
+	{
+		$(t).parent().next().find('.cried').addClass('ng-hide');
+		$(t).parent().next().find('.cry').removeClass('ng-hide');
+
+		
+
+		cv = $(t).parent().next().next().find('.cntc').text();
+		cv = parseInt(cv) - 1;
+		$(t).parent().next().next().find('.cntc').html(cv);
+
+
+
+	}
+
+
+}
+
+function laughNonck(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).prev().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().next().find('.cnt').text();
+	cv = parseInt(cv) - 1;
+	$(t).parent().next().next().find('.cnt').html(cv);
+}
+
+
+function cryClick(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).next().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().find('.cntc').text();
+	cv = parseInt(cv) + 1;
+	$(t).parent().next().find('.cntc').html(cv);
+
+
+	lg = $(t).parent().prev().find('.laughed').hasClass('ng-hide');
+	if(!lg)
+	{
+		$(t).parent().prev().find('.laughed').addClass('ng-hide');
+		$(t).parent().prev().find('.laugh').removeClass('ng-hide');
+
+		cv = $(t).parent().next().find('.cnt').text();
+		cv = parseInt(cv) - 1;
+		$(t).parent().next().find('.cnt').html(cv);
+
+
+	}
+
+}
+
+function cryNonck(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).prev().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().find('.cntc').text();
+	cv = parseInt(cv) - 1;
+	$(t).parent().next().find('.cntc').html(cv);
+}
+
+
+</script>

@@ -1,0 +1,325 @@
+<style type="text/css">
+.ldg
+{
+	display: none;
+}
+
+</style>
+					<div class="col-md-8 jokes-parent">
+
+						<div class="widther">
+
+							<div class="jokes_hd">
+								<span style="font-size:2em">  <i class="fa fa-user"></i> My Profile </span><br>
+								<span style="font-size:1.5em">
+								</span>	
+							</div>
+
+
+							<div  ng-if="ydy!='f' && ydy.user_id==fid" class="jokes_hd jokes_hd2">
+
+
+									<!-- dd -->
+											
+											<span style="font-size:1.28em; font-weight:700">  Congrats.. you are the recharge winner today !   </span>
+
+
+
+											<div class="jokes ng-cloak" style="color:#333">
+													
+
+
+													<div class="row">
+														<div class="col-xs-12">
+															<div class="post">
+																<!-- {{joke}} -->
+																	<div class="posttxt">{{ydy.post_text}}</div>
+																	<div ng-if="ydy.post_image" class="postimg">
+																		<img class="postimage" src="images/post/{{ydy.post_image}}">
+																	</div>
+															</div>
+														</div>
+													</div>
+
+												
+
+												</div>
+
+									<!-- dd -->
+
+							</div>
+
+
+
+
+							<div class="jokes_hd jokes_hd2">
+								
+								<form ng-submit="pro(udt[0])" role="form">
+								  <div class="form-group">
+								    <label for="name">Name:</label>
+								    <input type="text" ng-model="udt[0].user_name" required class="form-control" id="name">
+								  </div>
+								  <!-- <div class="form-group">
+								    <label for="pwd">Mobile:</label>
+								    <input type="text" ng-model="udt[0].user_mobile"  class="form-control" id="pwd">
+								  </div>
+								  <div class="form-group">
+								    <label for="pwd">Mobile Network:</label>
+								    <input type="text" ng-model="udt[0].user_mobnet"  class="form-control" id="net">
+								  </div> -->
+
+								  <!-- <div class="checkbox">
+									    <labels> Note: The mobile number is not public to other user. This will be the number recharged by us if you won any.</labels>
+								  </div> -->
+
+								  
+								  <button type="submit" class="btn btn-default">Update Details</button>
+
+								   <div ng-if="ltp==3" class="checkbox">
+									    <labels><b> Want to change your current Password ? </b><a style="color:#fff" href="#/app/change_password">Click here</a></labels>
+								  </div>
+
+								</form>
+
+							</div>
+
+
+							<div class="jokes_hd jokes_hd3">
+								<span style="font-size:1.6em">  <i class="fa fa-user"></i> {{udt[0].cnt}} People(s) have become fan to you </span><br>
+								<span style="font-size:1.1em; text-align:center">
+									Make more fans by posting good jokes
+								</span>	
+							</div>
+
+
+
+
+						
+
+						
+
+								
+							<div infinite-scroll='loadMore()' infinite-scroll-distance='0'>
+
+									<div ng-repeat="joke in jokes" id="{{joke.eee}}" class="jokes">
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="imag">
+													<img class="userimg" src="images/users/{{joke.user_name.length}}.png">
+												</div>
+												<div class="nametime">
+
+													<div class="name">{{joke.user_name}}</div>
+													<div class="time"> <i class="fa fa-clock-o"></i> {{joke.post_stamp}}</div>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="editor" style="float:right">
+													<a href="#/app/edit/{{joke.eee}}" class="edtj">Edit</a>
+													<a href=""  ng-confirm-click="Are you sure to delete this joke ?"  ng-click="delt(joke.eee)" class="edtd"> Delete</a>
+
+												</div>
+											</div>
+										</div>
+
+
+
+
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="post">
+													<!-- {{joke}} -->
+														<div class="posttxt">{{joke.post_text}}</div>
+														<div ng-if="joke.post_image" class="postimg">
+															<img class="postimage" src="images/post/{{joke.post_image}}">
+														</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="ln"></div>
+
+
+													<div class="col-sm-5 col-xs-12 cntr tp">
+														<span class="ls">
+															<span class="lw">
+																<span ng-if="!fid" data-toggle="modal" data-target="#modalnew" class="laugh"> 
+																	<button><img class="logi" src="images/emoji/smile.png"></button>
+																</span>
+																<span ng-if="fid" ng-show="!joke.laughed" onclick="laughClick(this)" ng-click="laughed(joke.post_id)" class="laugh"> 
+																	<button> <img class="logi" src="images/emoji/smile.png"></button>
+																</span>
+																<span ng-if="fid" ng-show="joke.laughed"  onclick="laughNonck(this)" ng-click="laughno(joke.post_id)" class="laughed"> 
+																	<button><img class="logi" src="images/emoji/smile.png"> </button>
+																</span>
+															</span>
+															<span class="laughers"> 
+																<span class="cnt">{{joke.laughers}}</span> Laughed 
+															</span>
+														</span>
+														&nbsp;
+														<span class="cs">
+															<span class="cw">
+																<span ng-if="!fid" data-toggle="modal" data-target="#modalnew" class="cry"> 
+																	<button> <img class="logi" src="images/emoji/cry.png"></button>
+																</span>
+																<span ng-if="fid" ng-show="!joke.cried" onclick="cryClick(this)" ng-click="cried(joke.post_id)" class="cry"> 
+																	<button> <img class="logi" src="images/emoji/cry.png"></button>
+																</span>
+																<span ng-if="fid" ng-show="joke.cried"  onclick="cryNonck(this)" ng-click="cryno(joke.post_id)" class="cried"> 
+																	<button> <img class="logi" src="images/emoji/cry.png"></button>
+																</span>
+															</span>
+															<span class="criers">
+																<span class="cntc">{{joke.criers}}</span> Cried 
+															</span>
+														</span>
+
+													</div>
+
+													
+
+
+													<div ng-if="fid==1" class="col-xs-12">
+														<br>
+														 <div ng-if="fid" ng-show="joke.post_status == 0" ng-click="appit(joke.post_id)" onclick="appClick(this)"  class="laugh appr"> 
+															<button> <i class="fa fa-clock-o"></i>  This Joke is waiting for approval  </button>
+														 </div>
+														 <div ng-if="fid" ng-show="joke.post_status ==1"  ng-click="appno(joke.post_id)"  onclick="appNonck(this)"  class="laughed appd"> 
+															<button> <i class="fa fa-check-circle"></i> This Joke is approved </button>
+														 </div>
+
+													</div>
+											</div>
+										</div>
+
+									</div>
+
+							</div>
+
+
+							<div>  
+						        <div class="blog-item">
+						            <div class="row">
+						              <div class="col-lg-10 col-sm-10">
+						              	<br>
+						              	<br>
+						                   <span style="font-size:25px" ng-bind="show_over"></span>
+
+						              	<br>
+
+						              </div>
+						            </div>
+						        </div>
+						    </div>
+
+
+						</div>
+
+
+					</div>
+					
+
+
+		
+<script src="ats/emoji/emojify.js"></script>
+
+<script type="text/javascript">
+
+emojify.run();
+
+
+
+function laughClick(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).next().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().find('.cnt').text();
+	cv = parseInt(cv) + 1;
+	$(t).parent().next().find('.cnt').html(cv);
+
+	lg = $(t).parent().parent().next().children().find('.cried').hasClass('ng-hide');
+	if(!lg)
+	{
+		$(t).parent().parent().next().children().find('.cried').addClass('ng-hide');
+		$(t).parent().parent().next().children().find('.cry').removeClass('ng-hide');
+		cv = $(t).parent().parent().next().children().find('.cntc').text();
+		cv = parseInt(cv) - 1;
+		$(t).parent().parent().next().children().find('.cntc').html(cv);
+	}
+
+
+}
+
+function laughNonck(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).prev().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().find('.cnt').text();
+	cv = parseInt(cv) - 1;
+	$(t).parent().next().find('.cnt').html(cv);
+}
+
+
+function cryClick(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).next().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().find('.cntc').text();
+	cv = parseInt(cv) + 1;
+
+	$(t).parent().next().find('.cntc').html(cv);
+
+	lg = $(t).parent().parent().prev().children().find('.laughed').hasClass('ng-hide');
+	if(!lg)
+	{
+		$(t).parent().parent().prev().children().find('.laughed').addClass('ng-hide');
+		$(t).parent().parent().prev().children().find('.laugh').removeClass('ng-hide');
+
+		cv = $(t).parent().parent().prev().children().find('.cnt').text();
+		cv = parseInt(cv) - 1;
+		$(t).parent().parent().prev().children().find('.cnt').html(cv);
+
+
+	}
+
+}
+
+function cryNonck(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).prev().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().find('.cntc').text();
+	cv = parseInt(cv) - 1;
+	$(t).parent().next().find('.cntc').html(cv);
+}
+
+
+
+function appClick(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).next().removeClass('ng-hide');
+	
+}
+
+function appNonck(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).prev().removeClass('ng-hide');
+	
+}
+
+
+
+</script>

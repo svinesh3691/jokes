@@ -1,0 +1,182 @@
+<style type="text/css">
+.ldg
+{
+	display: none;
+}
+
+</style>					
+<div class="col-md-8 jokes-parent">
+
+						<div class="widther">
+
+							<div class="jokes_hd">
+								<span style="font-size:2em"> <i class="fa fa-pencil"></i> Edit Joke </span><br>
+								<span style="font-size:1.5em">
+								</span>	
+							</div>
+
+								
+							<div>
+
+
+								<div class="jokes">
+										<div class="row">
+											<div class="col-md-12">
+												<form ng-submit="subForm(insdata)">
+													<div class="col-xs-7">
+														<h4 class="labe-head">Edit  Joke </h4> 
+													</div>
+
+													<div class="col-xs-5" >
+														<a href="#/app/profile" style="float:right" class="bk"> &larr; Back to profile </a>
+													</div>
+													<!-- <div class="col-md-12 labe">
+														<b>Text </b>
+													</div> -->
+
+													<div class="col-md-12">
+														<textarea ng-model="insdata.post_text" ng-if="fid" id="pj" onkeyup="lan()" required class="addtext"></textarea>
+														<textarea ng-if="!fid" onclick="alert('You must Login to post jokes');" readonly class="addtext"></textarea> 
+													</div>
+													<div ng-if="joke[0].post_image">
+
+														<div class="col-md-12 labe">
+															<b>Current Image</b>
+														</div>
+														<div class="col-md-12" style="margin-bottom:12px">
+															<img class="postimage" src="images/post/{{joke[0].post_image}}">
+
+														</div>
+														<div class="col-md-12 labe">
+															<b>Change Image</b>
+														</div>
+
+
+													</div>
+													<div ng-if="!joke[0].post_image">
+
+														<div class="col-md-12 labe">
+															<b>Image(if any)</b>
+														</div>
+
+													</div>
+																													
+													
+													<div class="col-md-12">
+														<input type="file"  ng-if="fid"  id="filer" onchange="angular.element(this).scope().file_changed(this)">
+														<input type="file"  ng-if="!fid" disabled onclick="alert('You must Login to post jokes');">
+													</div>
+													<div class="col-md-12" style="margin-top:10px">
+														<span class="rf">
+															Supported types : jpg | png | gif, <br>
+															File size should not exceed 1mb
+														</span>
+													</div>
+
+
+													<div class="col-md-12 labe">
+														<br>
+															<b>Select category</b>
+														</div>
+														<div class="col-md-12">
+															<select ng-model="insdata.post_cat" class="form-control">
+																<option ng-selected="cat.cat_id==insdata.post_cat" ng-repeat="cat in cats" value="{{cat.cat_id}}">{{cat.cat_name}}</option>
+																
+															</select>
+
+
+														</div>
+
+
+
+
+
+													<div class="col-md-12">
+														<div class="lin"></div>
+													</div>
+													<div class="col-md-12">
+														<div class="sub">
+															<input class="butto" type="submit" ng-if="fid && !postload" value="Update My Joke">
+															<input class="butto" type="button" onclick="alert('You must Login to post jokes');" ng-if="!fid" value="Update My Joke">
+															<input class="butto" type="button" ng-if="postload" value="Posting...">
+														</div>
+													</div>
+
+
+
+
+												</form>
+											</div>
+										</div>
+								</div>
+
+
+
+									
+
+
+							</div>
+
+
+							
+
+
+						</div>
+
+
+					</div>
+					
+
+
+
+
+<script src="ats/emoji/emojify.js"></script>
+
+<script type="text/javascript">
+
+emojify.run();
+
+function lan()
+{
+   if($('#pj').val().match(/[^A-Za-z0-9:.,?! @)#(+-_"';\n\r]/g)){                                                      
+       alert('Invalid Character usage. Please Use English characters only.');
+       $('#pj').val($('#pj').val().replace(/[^A-Za-z0-9:.,?! @)#(+-_"';\n\r]/g, ''))
+            return false;
+   }                      
+}
+
+     
+
+
+$(document).on('change','#filer', function() {
+    if (window.File && window.FileReader && window.FileList && window.Blob)
+    {
+        var fsize = $('#filer')[0].files[0].size;
+        var ftype = $('#filer')[0].files[0].type;
+        var fname = $('#filer')[0].files[0].name;
+        
+        if(  fsize>1048576 ) //do something if file size more than 1 mb (1048576)
+        {
+            alert("Oops ! Your file type is Too big!");
+            document.getElementById('filer').value = '';
+            return false;
+        }else if( (ftype !='image/png') && (ftype !='image/jpeg') && (ftype !='image/gif')  ){
+            alert("Oops ! | Your filetype is not supported!");
+        	document.getElementById('filer').value = '';
+            return false;
+
+        }
+        else
+        {
+        	return true;
+        }
+    }else{
+        alert("Please upgrade your browser, because your current browser lacks some new features we need!");
+    }
+});
+
+
+
+     
+
+</script>

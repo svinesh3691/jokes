@@ -1,0 +1,397 @@
+<style type="text/css"> .ldg { display: none; } </style>
+					<div class="col-md-8 jokes-parent">
+						<div class="widther">
+							<div class="jokes">
+									<div class="row">
+										<div class="col-md-12">
+											<form ng-submit="subForm(insdata)">
+												<div class="col-md-12">
+													<h4 class="labe-head">Post a Joke {{name}} </h4>
+												</div>
+												<div class="col-md-12">
+													<textarea ng-model="insdata.post_text" ng-if="fid" id="pj" onkeyup="lan()"  class="addtext"></textarea>
+													<textarea ng-if="!fid" onclick="alert('You must Login to post jokes');" readonly class="addtext"></textarea>
+												</div>
+												<div class="col-md-12 labe">
+													<b>Image(if any)</b>
+												</div>
+												<div class="col-md-12">
+													<input type="file"  ng-if="fid"  id="filer" onchange="angular.element(this).scope().file_changed(this)">
+													<input type="file"  ng-if="!fid" disabled onclick="alert('You must Login to post jokes');">
+												</div>
+												<div class="col-md-12" style="margin-top:10px">
+													<span class="rf">
+														Supported types : jpg | png | gif, <br>
+														File size should not exceed 1mb
+													</span>
+												</div>
+												<div class="col-md-12 labe">
+												<br>
+													<b>Select category</b>
+												</div>
+												<div class="col-md-12">
+													<select ng-model="insdata.post_cat" class="form-control">
+														<option value="">--Select a category --</option>
+														<option ng-repeat="cat in cats track by $index" value="{{cat.cat_id}}">{{cat.cat_name}}</option>
+													</select>
+												</div>
+												<div class="col-md-12">
+
+													
+
+													<div class="lin"></div>
+												</div>
+												<div class="col-md-12">
+													<div class="sub">
+														<input class="butto" type="submit" ng-if="fid && !postload" value="Post My Joke">
+														<input class="butto" type="button" onclick="alert('You must Login to post jokes');" ng-if="!fid" value="Post My Joke">
+														<input class="butto" type="button" ng-if="postload" value="Posting...">
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+							</div>
+
+
+							
+
+
+
+							
+
+
+							<div  class="jokes_hd jokes_hd2" id="menufil">
+												<div class="col-md-12x" style="color:#fff;margin-bottom:12px">
+													<b>Filter Jokes by category</b>
+												</div>
+												<div class="col-md-12x">
+													<select required ng-model="filt.cat" ng-change="filt()" class="form-control">
+														<option value=""> All Categories </option>
+														<option ng-repeat="cat in cats" value="{{cat.cat_id}}">{{cat.cat_name}}</option>
+													</select>
+												</div>
+							</div>
+							<!-- <div infinite-scroll='loadMore()' infinite-scroll-distance='2' class="cont"> -->
+							<div class="cont">
+								<div id="more">
+									<div  id="jke_{{joke.post_id}}" ng-repeat="joke in jokes" class="jokes ng-cloak hvr">
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="imag">
+													<img class="userimg" src="images/users/{{joke.user_name.length}}.png">
+												</div>
+												<div class="nametime">
+
+													<div class="name">
+														<a ng-if="joke.nw == 0" href="#/app/profile_view/{{joke.uuu}}">{{joke.user_name}}</a> 
+														<a ng-if="joke.nw == 1" href="#/app/profile"> {{joke.user_name}}</a>
+													</div>
+													<div class="time"> <i class="fa fa-clock-o"></i> {{joke.post_stamp}}</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="post">
+														<div class="posttxt">{{joke.post_text}}</div>
+														<div ng-if="joke.post_image" class="postimg">
+															<a href="{{base_url}}images/post/{{joke.post_image}}"><img class="postimage" src="{{base_url}}images/post/{{joke.post_image}}"></a>
+														</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="ln"></div>
+													<div class="col-sm-5 col-xs-12 cntr tp">
+														<span class="ls">
+															<span class="lw">
+																<span ng-if="!fid" data-toggle="modal" data-target="#modalnew" class="laugh"> 
+																	<button> <img class="logi" src="images/emoji/smile.png"></button>
+																</span>
+																<span ng-if="fid" ng-show="!joke.laughed" onclick="laughClick(this)" ng-click="laughed(joke.post_id)" class="laugh"> 
+																	<button> <img class="logi" src="images/emoji/smile.png"></button>
+																</span>
+																<span ng-if="fid" ng-show="joke.laughed"  onclick="laughNonck(this)" ng-click="laughno(joke.post_id)" class="laughed"> 
+																	<button><img class="logi" src="images/emoji/smile.png"> </button>
+																</span>
+															</span>
+															<span class="laughers"> 
+																<span class="cnt">{{joke.laughers}}</span> Laughed 
+															</span>
+														</span>
+														&nbsp;
+														<span class="cs">
+															<span class="cw">
+																<span ng-if="!fid" data-toggle="modal" data-target="#modalnew" class="cry"> 
+																	<button> <img class="logi" src="images/emoji/cry.png"></button>
+																</span>
+																<span ng-if="fid" ng-show="!joke.cried" onclick="cryClick(this)" ng-click="cried(joke.post_id)" class="cry"> 
+																	<button> <img class="logi" src="images/emoji/cry.png"></button>
+																</span>
+																<span ng-if="fid" ng-show="joke.cried"  onclick="cryNonck(this)" ng-click="cryno(joke.post_id)" class="cried"> 
+																	<button> <img class="logi" src="images/emoji/cry.png"></button>
+																</span>
+															</span>
+															<span class="criers">
+																<span class="cntc">{{joke.criers}}</span> Cried 
+															</span>
+														</span>
+
+													</div>
+
+												
+													<div ng-if="fid==1" class="col-xs-12">
+														<br>
+														 <div ng-if="fid" ng-show="joke.post_status == 0" ng-click="appit(joke.post_id)" onclick="appClick(this)"  class="laugh appr"> 
+															<button> <i class="fa fa-clock-o"></i>  This Joke is waiting for approval  </button>
+														 </div>
+														 <div ng-if="fid" ng-show="joke.post_status ==1"  ng-click="appno(joke.post_id)"  onclick="appNonck(this)"  class="laughed appd"> 
+															<button> <i class="fa fa-check-circle"></i> This Joke is approved </button>
+														 </div>
+													</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div style='clear: both;'></div>
+							<div>  
+						        <div class="blog-item">
+						            <div class="row">
+						              <div class="col-lg-10 col-sm-10">
+						              	<br>
+						              	<br>
+						                   <span style="font-size:25px" ng-bind="show_over"></span>
+						              	<br>
+						              </div>
+						            </div>
+						        </div>
+						    </div>
+
+
+						</div>
+					</div>
+
+		<!-- Login Modal -->
+		<div class="modal" id="modalnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h4 class="modal-title" style="color:#4ac4fa" id="myModalLabel">You Must Login to Laugh/Cry on a Joke !</h4>
+		            </div>
+		            <div class="modal-body">
+
+		            	<div class="widther">
+
+									<div class="">
+
+											<div class="row">
+												<div class="col-xs-12">
+
+															 <form class="form-horizontal" role="form" onsubmit="lint()" ng-submit="loginmodal(reg)">
+																  <div class="form-group">
+																    <label class="control-label col-sm-2" for="user">E-Mail:</label>
+																    <div class="col-sm-10">
+																      <input type="text"  required  ng-model="reg.usermail" class="form-control" id="user" placeholder="Enter email">
+																    </div>
+																  </div>
+																  <div class="form-group">
+																    <label class="control-label col-sm-2" for="pwd">Password:</label>
+																    <div class="col-sm-10"> 
+																      <input required  ng-model="reg.pass" type="password" class="form-control" id="pwd" placeholder="Enter password">
+																    </div>
+																  </div>
+																  
+																  <div class="form-group"> 
+																    <div class="col-sm-offset-2 col-sm-10">
+																      <button type="submit" style="background-color: #0DC9F7;color: white;text-decoration: none;border: 1px solid #0087CB;" class="btn "> <span class="lint"> Login with appsvin.com </span> </button>
+																    </div>
+																  </div>
+																</form>
+
+
+																Dont have an account yet ? <a class="custom-close" href="#/app/register">Register Now</a>
+													
+												</div>
+											</div>
+									</div>
+									
+								</div>
+
+
+		            </div><!--Modal body -->
+
+		           <!--  <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		            </div> -->
+		                  
+		        </div>
+		    </div>
+		</div>
+
+
+
+		<!-- End Add New Modal -->
+					
+<!-- jokes.appsvin.com/re/ci/index.php/jokes/crn/yester -->
+<script src="ats/emoji/emojify.js"></script>
+
+<script type="text/javascript">
+
+
+
+
+$(window).scroll(function()
+{
+     if  ( ($(document).height() - $(window).height()) - $(window).scrollTop() < 50 ){
+              angular.element(document.getElementById('more')).scope().loadMore();
+     }
+});
+
+emojify.run();
+$(".custom-close").on('click', function() {
+    $('#modalnew').modal('hide');
+});
+
+function lint()
+{
+	$('.lint').html('<i class="fa fa-spin fa-cog"></i> Loging In ! Please wait ....');
+}
+
+
+
+
+
+
+function laughClick(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).next().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().find('.cnt').text();
+	cv = parseInt(cv) + 1;
+	$(t).parent().next().find('.cnt').html(cv);
+
+	lg = $(t).parent().parent().next().children().find('.cried').hasClass('ng-hide');
+	if(!lg)
+	{
+		$(t).parent().parent().next().children().find('.cried').addClass('ng-hide');
+		$(t).parent().parent().next().children().find('.cry').removeClass('ng-hide');
+		cv = $(t).parent().parent().next().children().find('.cntc').text();
+		cv = parseInt(cv) - 1;
+		$(t).parent().parent().next().children().find('.cntc').html(cv);
+	}
+
+
+}
+
+function laughNonck(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).prev().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().find('.cnt').text();
+	cv = parseInt(cv) - 1;
+	$(t).parent().next().find('.cnt').html(cv);
+}
+
+
+function cryClick(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).next().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().find('.cntc').text();
+	cv = parseInt(cv) + 1;
+
+	$(t).parent().next().find('.cntc').html(cv);
+
+	lg = $(t).parent().parent().prev().children().find('.laughed').hasClass('ng-hide');
+	if(!lg)
+	{
+		$(t).parent().parent().prev().children().find('.laughed').addClass('ng-hide');
+		$(t).parent().parent().prev().children().find('.laugh').removeClass('ng-hide');
+
+		cv = $(t).parent().parent().prev().children().find('.cnt').text();
+		cv = parseInt(cv) - 1;
+		$(t).parent().parent().prev().children().find('.cnt').html(cv);
+
+
+	}
+
+}
+
+function cryNonck(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).prev().removeClass('ng-hide');
+	
+	cv = $(t).parent().next().find('.cntc').text();
+	cv = parseInt(cv) - 1;
+	$(t).parent().next().find('.cntc').html(cv);
+}
+
+
+function appClick(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).next().removeClass('ng-hide');
+	
+}
+
+function appNonck(t)
+{
+	$(t).addClass('ng-hide');
+	$(t).prev().removeClass('ng-hide');
+	
+}
+
+function lan()
+{
+
+   if($('#pj').val().match(/[^A-Za-z0-9:.,?! @)#(+-_"';\n\r]/g)){                                                      
+       alert('Invalid Character usage. Please Use English characters only.');
+       $('#pj').val($('#pj').val().replace(/[^A-Za-z0-9:.,?! @)#(+-_"';\n\r]/g, ''))
+            return false;
+   }                      
+}
+
+     
+
+
+$(document).on('change','#filer', function() {
+    if (window.File && window.FileReader && window.FileList && window.Blob)
+    {
+        var fsize = $('#filer')[0].files[0].size;
+        var ftype = $('#filer')[0].files[0].type;
+        var fname = $('#filer')[0].files[0].name;
+        
+        if(  fsize>1048576 ) //do something if file size more than 1 mb (1048576)
+        {
+            alert("Oops ! Your file type is Too big!");
+            document.getElementById('filer').value = '';
+            return false;
+        }else if( (ftype !='image/png') && (ftype !='image/jpeg') && (ftype !='image/gif')  ){
+            alert("Oops ! | Your filetype is not supported!");
+        	document.getElementById('filer').value = '';
+            return false;
+
+        }
+        else
+        {
+        	return true;
+        }
+    }else{
+        alert("Please upgrade your browser, because your current browser lacks some new features we need!");
+    }
+});
+
+
+
+     
+
+</script>
+
